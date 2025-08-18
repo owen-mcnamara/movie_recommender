@@ -1,0 +1,65 @@
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #FFFFFF;
+  color: #111111;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111111;
+}
+
+/* Subtitle / Description */
+p {
+  font-size: 1.2rem;
+  color: #555555;
+  margin-bottom: 2rem;
+}
+
+/* Button */
+button {
+  background-color: #007AFF;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005BBB;
+}
+
+/* ===== Dark Mode ===== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+  h1 {
+    color: #FFFFFF;
+  }
+
+  p {
+    color: #AAAAAA;
+  }
+
+  button {
+    background-color: #0A84FF;
+  }
+
+  button:hover {
+    background-color: #0060DF;
+  }
+}
