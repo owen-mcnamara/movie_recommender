@@ -1,10 +1,17 @@
+# Byte-compiled / cache files
 __pycache__/
 *.pyc
-instance/
+
+# Virtual environments
+venv/
+
+# Environment files
 .env
+
+# Databases
+*.sqlite3
+
+# IDE / editor settings
 .vscode/
 .idea/
-*.sqlite3
-venv/
-__pycache__/
-*.pyc
+instance/
