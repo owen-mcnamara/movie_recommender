@@ -40,26 +40,4 @@ button:hover {
   background-color: #005BBB;
 }
 
-/* ===== Dark Mode ===== */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000000;
-    color: #FFFFFF;
-  }
 
-  h1 {
-    color: #FFFFFF;
-  }
-
-  p {
-    color: #AAAAAA;
-  }
-
-  button {
-    background-color: #0A84FF;
-  }
-
-  button:hover {
-    background-color: #0060DF;
-  }
-}
