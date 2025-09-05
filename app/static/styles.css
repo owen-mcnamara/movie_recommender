@@ -1,43 +1,182 @@
-/* ===== Base Styles ===== */
-body {
+/* Movie Database API */
+
+/* ==================== VARIABLES ==================== */
+:root {
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --accent: #ff6b6b;
+  --accent-hover: #ee5a24;
+  --gradient: linear-gradient(135deg, #667eea, #764ba2);
+  --text-dark: #333;
+  --text-light: #fff;
+  --bg-light: #fff;
+  --overlay: rgba(255, 255, 255, 0.1);
+  --overlay-hover: rgba(255, 255, 255, 0.2);
+  --border: rgba(255, 255, 255, 0.2);
+}
+
+/* ==================== BASE ==================== */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #FFFFFF;
-  color: #111111;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* ==================== LAYOUT ==================== */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
   text-align: center;
-  padding: 2rem;
 }
 
-/* Headings */
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #111111;
+.container--gradient {
+  background: var(--gradient);
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--text-light);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Subtitle / Description */
-p {
-  font-size: 1.2rem;
-  color: #555555;
-  margin-bottom: 2rem;
+.container--gradient .container {
+  background: var(--overlay);
+  border-radius: 20px;
+  margin: 0;
 }
 
-/* Button */
-button {
-  background-color: #007AFF;
-  color: #FFFFFF;
-  font-size: 1.1rem;
-  font-weight: 600;
+/* ==================== BUTTONS ==================== */
+.btn {
+  padding: 10px 20px;
   border: none;
-  border-radius: 12px;
-  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s;
 }
 
-button:hover {
-  background-color: #005BBB;
+.btn--primary {
+  background: var(--primary);
+  color: var(--text-light);
 }
 
+.btn--primary:hover {
+  background: var(--primary-hover);
+}
 
+.btn--accent {
+  background: var(--accent);
+  color: var(--text-light);
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-weight: bold;
+}
+
+.btn--accent:hover {
+  background: var(--accent-hover);
+}
+
+/* ==================== FORMS ==================== */
+.option {
+  background: var(--overlay);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  transition: background 0.3s;
+}
+
+.option:hover {
+  background: var(--overlay-hover);
+}
+
+.option input {
+  margin-right: 10px;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+h1 {
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.container--gradient h1,
+.container--gradient h2,
+.container--gradient p {
+  color: var(--text-light);
+}
+
+.question-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* ==================== UTILITIES ==================== */
+.btn-group {
+  margin-top: 30px;
+}
+
+.btn-group .btn {
+  margin: 10px;
+}
+
+/* ==================== MOVIE CARDS ==================== */
+.movie-card {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.movie-poster {
+    width: 150px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.movie-info {
+    flex: 1;
+}
+
+/* ==================== RESPONSIVE ==================== */
+.btn--small {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn--small {
+        width: 200px;
+        margin: 5px 0;
+    }
+}

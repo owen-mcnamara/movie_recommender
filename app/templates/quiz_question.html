@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Quiz</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container--gradient">
+        <div class="container">
+            <div class="question-text">{{ question.question }}</div>
+            <p>Question {{ question_num + 1 }} of {{ total_questions }}</p>
+            
+            <form method="POST">
+                {% for option in question.options %}
+                <label class="option">
+                    <input type="radio" name="option" value="{{ loop.index0 }}" required>
+                    {{ option.text }}
+                </label>
+                {% endfor %}
+                
+                <div class="btn-group">
+                    <a href="/" class="btn btn--accent">Back</a>
+                    <button type="submit" class="btn btn--accent">
+                        {% if question_num + 1 < total_questions %}
+                            Next
+                        {% else %}
+                            Get My Movies!
+                        {% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
