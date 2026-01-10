@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} - Movie Details</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container--gradient">
+        <div class="container">
+            <div class="movie-details">
+                <div class="movie-header">
+                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" 
+                         alt="{{ movie.title }}" class="movie-poster-large">
+                    
+                    <div class="movie-info-detailed">
+                        <h1>{{ movie.title }}</h1>
+                        <p class="movie-tagline">{{ movie.tagline }}</p>
+                        
+                        <div class="movie-stats">
+                            <span class="stat">{{ movie.vote_average }}/10</span>
+                            <span class="stat">{{ movie.runtime }} min</span>
+                            <span class="stat">{{ movie.release_date[:4] }}</span>
+                        </div>
+                        
+                        <div class="movie-genres">
+                            {% for genre in movie.genres %}
+                            <span class="genre-tag">{{ genre.name }}</span>
+                            {% endfor %}
+                        </div>
+
+                        {% if current_user.is_authenticated %}
+                            {% if is_watched %}
+                                <div style="margin-top: 15px;">
+                                    <span class="btn btn--success">✓ Watched</span>
+                                </div>
+                            {% else %}
+                                <form method="POST" action="/mark_watched/{{ movie.id }}" style="margin-top: 15px;">
+                                    <input type="hidden" name="movie_title" value="{{ movie.title }}">
+                                    <input type="hidden" name="movie_poster" value="{{ movie.poster_path }}">
+                                    <button type="submit" class="btn btn--primary">Mark as Watched</button>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="movie-overview">
+                    <h3>Overview</h3>
+                    <p>{{ movie.overview }}</p>
+                </div>
+                
+                {% if movie.credits.cast %}
+                <div class="movie-cast">
+                    <h3>Cast</h3>
+                    <div class="cast-list">
+                        {% for actor in movie.credits.cast[:6] %}
+                        <div class="cast-member">
+                            <strong>{{ actor.name }}</strong><br>
+                            <small>{{ actor.character }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if movie.videos.results %}
+                <div class="movie-trailer">
+                    <h3>Trailer</h3>
+                    {% set trailer_found = false %}
+                    {% for video in movie.videos.results %}
+                        {% if video.type == "Trailer" and video.site == "YouTube" and not trailer_found %}
+                        <iframe width="560" height="315" 
+                                src="https://www.youtube.com/embed/{{ video.key }}" 
+                                frameborder="0" allowfullscreen></iframe>
+                        {% set trailer_found = true %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="btn-group">
+                <a href="javascript:history.back()" class="btn btn--accent btn--small">Back</a>
+                <a href="/" class="btn btn--accent btn--small">Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

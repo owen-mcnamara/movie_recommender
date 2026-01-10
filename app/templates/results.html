@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Movie Recommendations</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
+
 <body>
     <div class="container--gradient">
         <div class="container">
             <h1>Movies Perfect for You!</h1>
-            
+
             {% for movie in movies %}
             <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster">
-                <div class="movie-info">
-                    <h3>{{ movie.title }}</h3>
-                    <p>{{ movie.overview[:150] }}...</p>
-                    <p><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+                <a href="/movie/{{ movie.id }}" class="movie-card-link">
+                    <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="{{ movie.title }}"
+                        class="movie-poster">
+                    <div class="movie-info">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.overview[:150] }}...</p>
+                        <p><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+                    </div>
+                </a>
+                {% if current_user.is_authenticated %}
+                <div class="movie-actions">
+                    <form method="POST" action="/mark_watched/{{ movie.id }}">
+                        <input type="hidden" name="movie_title" value="{{ movie.title }}">
+                        <input type="hidden" name="movie_poster" value="{{ movie.poster_path }}">
+                    </form>
                 </div>
+                {% endif %}
             </div>
             {% endfor %}
-            
+
             <div class="btn-group">
                 <a href="/" class="btn btn--accent btn--small">Take Quiz Again</a>
-                <a href="/refresh" class="btn btn--accent btn--small">More Movies</a>
-                <a href="/movies" class="btn btn--accent btn--small">Browse Popular Movies</a>
+                <a href="/movies" class="btn btn--accent btn--small">Popular Movies</a>
             </div>
         </div>
     </div>
 </body>
+
 </html>

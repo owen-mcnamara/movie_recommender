@@ -7,16 +7,23 @@
 </head>
 <body>
     <header>
-        <h1>Movie Recommender</h1>
-        <hr>
+        <div class="nav-container">
+        <h1><a href="/">Movie Recommender</a></h1>
+        <nav>
+            {% if current_user.is_authenticated %}
+                <span>Welcome, {{ current_user.username }}!</span>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            {% endif %}
+        </nav>
+        </div>
     </header>
 
-    <!-- Page-specific content goes here -->
-    {% block content %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-    <footer>
-        <hr>
-        <p>Made with Flask</p>
-    </footer>
 </body>
 </html>
