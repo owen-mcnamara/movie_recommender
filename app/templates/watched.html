@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watched Movies</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="container--gradient">
+        <div class="container">
+            <h1>My Watched Movies</h1>
+
+            {% if watched_movies %}
+            {% for watched in watched_movies %}
+            <div class="movie-card">
+                {% if watched.movie_poster %}
+                <img src="https://image.tmdb.org/t/p/w300{{ watched.movie_poster }}" alt="{{ watched.movie_title }}"
+                    class="movie-poster">
+                {% endif %}
+                <div class="movie-info">
+                    <h3>{{ watched.movie_title }}</h3>
+                    <p><small>Watched on {{ watched.watched_at.strftime('%B %d, %Y') }}</small></p>
+                </div>
+            </div>
+
+            {% endfor %}
+            {% else %}
+            <p>You haven't watched any movies yet!</p>
+            {% endif %}
+
+            <div class="btn-group">
+                <a href="/" class="btn btn--accent btn--small">Home</a>
+                <a href="/movies" class="btn btn--accent btn--small">Browse Movies</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

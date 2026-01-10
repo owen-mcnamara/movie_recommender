@@ -1,25 +1,29 @@
+# TMDB API functions for getting movie data
 import os
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# Get API key from environment variables
 API_KEY = os.getenv('TMDB_API_KEY')
 BASE_URL = "https://api.themoviedb.org/3"
 
-def get_popular_movies():
+# Get popular movies from TMDB
+def get_popular_movies(page=1):
     url = f"{BASE_URL}/movie/popular"
     params = {
         "api_key": API_KEY,
         "language": "en-US",
-        "page": 1
+        "page": page
     }
     
     response = requests.get(url, params=params)
     if response.status_code == 200:
-        return response.json()["results"][:10]
+        return response.json()["results"]
     return []
 
+# Get movies by specific genre
 def get_movies_by_genre(genre_id):
     url = f"{BASE_URL}/discover/movie"
     params = {
@@ -35,6 +39,7 @@ def get_movies_by_genre(genre_id):
         return response.json()["results"][:8]
     return []
 
+# Get movies with multiple filters based on quiz preferences
 def get_movies_with_filters(genres=None, min_year=None, max_year=None, 
                            min_runtime=None, max_runtime=None, 
                            min_rating=None, sort_by="popularity.desc", page=1):
@@ -46,6 +51,7 @@ def get_movies_with_filters(genres=None, min_year=None, max_year=None,
         "sort_by": sort_by
     }
     
+    # Add filters if provided
     if genres:
         params["with_genres"] = ",".join(map(str, genres))
     if min_year:
@@ -62,4 +68,33 @@ def get_movies_with_filters(genres=None, min_year=None, max_year=None,
     response = requests.get(url, params=params)
     if response.status_code == 200:
         return response.json()["results"][:8]
+    return []
+
+# Get detailed info for a specific movie
+def get_movie_details(movie_id):
+    url = f"{BASE_URL}/movie/{movie_id}"
+    params = {
+        "api_key": API_KEY,
+        "language": "en-US",
+        "append_to_response": "credits,videos,similar"  # Get cast, trailers, and similar movies
+    }
+    
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json()
+    return None
+
+# Search for movies by title
+def search_movies(query, page=1):
+    url = f"{BASE_URL}/search/movie"
+    params = {
+        "api_key": API_KEY,
+        "language": "en-US",
+        "query": query,
+        "page": page
+    }
+    
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json()["results"]
     return []

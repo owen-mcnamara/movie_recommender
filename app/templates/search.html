@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movies</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container--gradient">
+        <div class="container">
+            <h1>Search Movies</h1>
+            
+            <form method="POST" style="margin-bottom: 30px;">
+                <input type="text" name="query" value="{{ query }}" placeholder="Search for movies..." 
+                       style="padding: 10px; width: 70%; border-radius: 5px; border: 1px solid #ccc;">
+                <button type="submit" class="btn btn--primary" style="padding: 10px 20px;">Search</button>
+            </form>
+            
+            {% if query %}
+                <h2>Results for "{{ query }}"</h2>
+                {% if movies %}
+                    {% for movie in movies %}
+                    <div class="movie-card">
+                        <a href="/movie/{{ movie.id }}" class="movie-card-link">
+                            <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster">
+                            <div class="movie-info">
+                                <h3>{{ movie.title }}</h3>
+                                <p>{{ movie.overview[:150] }}...</p>
+                                <p><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No movies found for "{{ query }}"</p>
+                {% endif %}
+            {% endif %}
+            
+            <div class="btn-group">
+                <a href="/" class="btn btn--accent btn--small">Home</a>
+                <a href="/movies" class="btn btn--accent btn--small">Popular Movies</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
