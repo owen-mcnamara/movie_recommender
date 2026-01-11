@@ -28,6 +28,7 @@ A Flask web application that helps users discover movies through a personalized 
 ![Movie Details](Images/movie_details.png)
 
 ## Project Structure
+```text
 movie_recommender_v1/
 ├── app/
 │ ├── static/
@@ -49,6 +50,7 @@ movie_recommender_v1/
 ├── requirements.txt
 ├── .env
 └── README.md
+```
 
 ## Setup Instructions
 
@@ -60,28 +62,39 @@ movie_recommender_v1/
 ### Installation
 
 1. Clone the repository:
-
+```text
 git clone https://github.com/owen-mcnamara/movie_recommender_v1
 cd movie_recommender_v1
+```
 
-2. Create a virtual envirnoment:
+2. Create a virtual environment:
+```text
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
 3. Install dependencies:
+```text
 pip install -r requirements.txt
+```
 
 4. Create a .env file in the root directory
+```text
 SECRET_KEY=your-secret-key-here
 TMDB_API_KEY=your-tmdb-api-key-here
 DATABASE_URL=your-database-url-here
 FLASK_ENV=development
+```
 
 5. Initialise the database:
+```text
 python -c "from main import app, db; app.app_context().push(); db.create_all()"
+```
 
 6. Run the application
+```text
 python main.py
+```
 
 The app will be available at http://localhost:5000
 
