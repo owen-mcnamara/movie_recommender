@@ -31,31 +31,31 @@ A Flask web application that helps users discover movies through a personalized 
 ```text
 movie_recommender_v1/
 ├── app/
-│ ├── static/
-│ │ └── styles.css
-│ ├── templates/
-│ │ ├── base.html
-│ │ ├── login.html
-│ │ ├── register.html
-│ │ ├── quiz_start.html
-│ │ ├── quiz_question.html
-│ │ ├── results.html
-│ │ ├── movies.html
-│ │ ├── movie_details.html
-│ │ ├── watched.html
-│ │ └── search.html
-│ └── tmdb_api.py
+│   ├── static/
+│   │   └── styles.css
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── quiz_start.html
+│   │   ├── quiz_question.html
+│   │   ├── results.html
+│   │   ├── movies.html
+│   │   ├── movie_details.html
+│   │   ├── watched.html
+│   │   └── search.html
+│   └── tmdb_api.py
 ├── main.py
 ├── models.py
 ├── requirements.txt
 ├── .env
 └── README.md
-```
+
 
 ## Setup Instructions
 
 ### Prerequisites
-- Python 3.11+
+- Python 3.11
 - TMDB API Key (free from https://www.themoviedb.org/settings/api)
 - PostgreSQL database
 
@@ -63,14 +63,14 @@ movie_recommender_v1/
 
 1. Clone the repository:
 ```text
-git clone https://github.com/owen-mcnamara/movie_recommender_v1
-cd movie_recommender_v1
+git clone https://github.com/owen-mcnamara/movie_recommender
+cd movie_recommender
 ```
 
 2. Create a virtual environment:
 ```text
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate # (CMD: venv\Scripts\activate | PowerShell: venv\Scripts\Activate.ps1)
 ```
 
 3. Install dependencies:
