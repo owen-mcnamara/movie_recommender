@@ -50,6 +50,7 @@ movie_recommender_v1/
 ├── requirements.txt
 ├── .env
 └── README.md
+```
 
 
 ## Setup Instructions
